@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="_template.xhtml">
+	
+	<ui:define name="body">
+	   	<h:form>
+	   	
+	   <table  width='700'>
+	    	<tr>
+	    		<td colspan='3'>
+	    		<h5 style="font-color:#000066">Cadastro de Livros</h5>
+	    		</td>
+	    	</tr>	
+	    	<tr>
+	    		<td width='70'><h:outputLabel value='Título'/></td>
+	    		<td width='400'><h:inputText id='titulo' value='#{formLivrosBean.livro.titulo}' class="form-control" required='true' requiredMessage="Título obrigatório"/></td>
+	    		<td><h:message for="titulo" style="color:red" /></td>
+	    	</tr>
+	    	<tr>
+	    		
+	    		<td><h:outputLabel value='Categoria'/></td>
+	    		<td><h:selectOneMenu id='categoria' widgetVar='campo_categoria'  value="#{formLivrosBean.categoriaId}" class="form-control" >
+	    			<f:selectItem itemValue="0" itemLabel="Selecione a categoria"/>
+	    			 <f:selectItems value="#{formLivrosBean.categorias}" var="cat" itemLabel="#{cat.categoria}" itemValue="#{cat.id}"/>
+	    			<f:ajax event="change" listener="#{formLivrosBean.processaSubCategorias}" render = "radio_sub_categoria div_msg"/>
+	    		</h:selectOneMenu>
+	    		</td>
+	    		<td><h:message for="categoria" style="color:red" /></td>
+	    	</tr>
+	    </table>
+	    <div class='div-sub-categoria' id='sub-categoria_1' style='display:none'>
+	   <table  width='700' >
+	   <tr>
+	    		<td width='70'></td>
+	    		<td width='400'>
+	    		
+	    		<div id='div_sub_categoria'>  
+	    		 <h:selectOneRadio id='radio_sub_categoria' value="#{formLivrosBean.subCategoriaId}">
+   					 <f:selectItems value="#{formLivrosBean.subCategorias}" var="subCat" itemLabel="#{subCat.subCategoria}" itemValue="#{subCat.id}"/>
+					<f:ajax event="click" listener="#{formLivrosBean.processaSubCategorias2}" render = "div_msg2"/>
+				</h:selectOneRadio>
+				</div>
+				
+					</td>
+	    		<td></td>
+	    	</tr>
+	    	
+	   </table>
+	    		
+	    </div>
+	    
+	    
+	    
+	    <table  width='700'>
+	    
+	    	<tr>
+	    		<td width='70'><h:outputLabel value='Descrição'/></td>
+	    		<td width='400'><h:inputTextarea rows='4' columns='40'  value='#{formLivrosBean.livro.descricao}'  id='descricao' class="form-control" /></td>
+	    		<td><h:message for="descricao" style="color:red" /></td>
+	    	</tr>
+	    	<tr>
+	    		<td><h:outputLabel value='Páginas'/></td>
+	    		<td><h:inputText id='paginas' class="form-control" /></td>
+	    		<td><h:message for="paginas" style="color:red" /></td>
+	    	</tr>
+	    	<tr>
+	    		<td><h:outputLabel value='Preco'/></td>
+	    		<td><h:inputText id='preco' value='#{formLivrosBean.livro.preco}' class="form-control" /></td>
+	    		<td><h:message for="preco" style="color:red" /></td>
+	    	</tr>	
+	    	<tr>
+	    		<td colspan='3'>
+	    		<h:commandButton value='Salvar' action="#{formLivrosBean.salvar}"/>
+	    			
+	    		
+	    		</td>
+	    	</tr>
+	    </table>		
+	    	
+	   
+	    
+	    <br/>
+	    <h:outputLabel value='#{formLivrosBean.msg}'/>	<br/>
+	     
+	    
+	    
+	    </h:form>
+	    
+	</ui:define>
+	
+</ui:composition>
+</html>

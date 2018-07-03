@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="_template.xhtml">
+	
+	<ui:define name="body">
+	   	<h:form>
+	   	<table align='center'>
+	   		<tr>
+	   			<td width='50'><h:outputLabel value='Título'/></td>
+	   			<td><h:inputText id='titulo' value='#{consulta1Bean.tituloBusca}' class="form-control" >
+	   					<f:ajax event="blur" listener="#{consulta1Bean.consultar}" render = "div_msg div_msg2 livros"/>
+	   			
+	   				</h:inputText>
+	   			</td>
+	   		</tr>
+	   		<tr>
+	   			<td colspan='2' align='center'>	<h:outputText id='div_msg'  value="#{consulta1Bean.msg}"/> </td>
+	   		</tr>	
+	   	</table>
+	   	<br/>
+	    
+	    
+	  
+	      
+	   	<h:dataTable id="livros" class='table table-hover'  style="border-collapse:collapse;border:1px solid #ccc;" value="#{consulta1Bean.livros}" var="livro">
+			<h:column>
+				<f:facet name="header">
+				<h:outputText value="Título" />
+				</f:facet>
+				<h:outputText  value="#{livro.titulo}"/>
+			</h:column>
+			<h:column >
+				<f:facet name="header">
+				<h:outputText value="Categoria" />
+				</f:facet>
+				<h:outputText value="#{livro.categoria.categoria}"/>
+			</h:column>
+			<h:column >
+				<f:facet name="header">
+				<h:outputText value="Páginas" />
+				</f:facet>
+				<h:outputText value="#{livro.preco}"/>
+			</h:column>
+			
+			<h:column >
+				<f:facet name="header">
+				<h:outputText value="Ações" />
+				</f:facet>
+				
+				<h:outputLink   value="formAltLivro.xhtml" >
+					<i class="material-icons" style="font-size:18px">mode_edit</i>
+					<f:param name="livroId" value="#{livro.id}" />
+				</h:outputLink>
+				
+				<h:commandLink action="#{consulta1Bean.deletarLivro(livro)}">
+					
+					<i class="material-icons" style="font-size:18px">delete</i>
+					
+				</h:commandLink>
+			</h:column>
+
+		</h:dataTable>
+		
+		
+		</h:form>
+		
+		   	
+	   	
+	   	
+	</ui:define>
+</ui:composition>	
+</html>	

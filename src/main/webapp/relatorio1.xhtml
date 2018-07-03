@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="_template.xhtml">
+	
+	<ui:define name="body">
+	<h:form>
+	
+	
+	
+
+	<table width='500' align='center'><tr><td>
+	<h:dataTable id="categorias" class='table table-hover'  style="border-collapse:collapse;border:1px solid #ccc;" value="#{relatorio1Bean.categorias}" var="categoria">
+			<h:column>
+				<f:facet name="header">
+				<h:outputText value="Categoria" />
+				</f:facet>
+				<h:outputText  value="#{categoria.categoria}"/>
+			</h:column>
+			<h:column >
+				<f:facet name="header">
+				<h:outputText value="Qde" />
+				</f:facet>
+				<h:outputText value="#{relatorio1Bean.livroDao.livrosPorCategoria(categoria.id)}"/>
+			</h:column>
+	</h:dataTable>	
+	</td></tr></table>		
+
+	
+	</h:form>
+	</ui:define>
+</ui:composition>	
+</html>	

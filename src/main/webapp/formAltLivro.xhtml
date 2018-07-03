@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+<f:metadata>
+    <f:viewParam name="livroId" value="#{formAltLivroBean.livroId}" />
+ </f:metadata>
+
+</h:head>
+
+
+<ui:composition template="_template.xhtml">
+	
+	<ui:define name="body">
+	   	<h:form>
+	   	
+	   	<br/>
+	   	<h:outputText value="#{formAltLivroBean.livroId2}"/>
+	   	
+	   	<table  width='700'>
+	    	<tr>
+	    		<td colspan='3'>
+	    		<h5 style="font-color:#000066">Formulário de Alteração de livro</h5>
+	    		</td>
+	    	</tr>	
+	    	<tr>
+	    		<td width='70'><h:outputLabel value='Título'/></td>
+	    		<td width='400'><h:inputText id='titulo' value='#{formAltLivroBean.livro.titulo}' class="form-control" required='true' requiredMessage="Título obrigatório"/></td>
+	    		<td><h:message for="titulo" style="color:red" /></td>
+	    	</tr>
+	    	<tr>
+	    		<td width='70'><h:outputLabel value='Descrição'/></td>
+	    		<td width='400'><h:inputTextarea rows='4' columns='40'  value='#{formAltLivroBean.livro.descricao}'  id='descricao' class="form-control" /></td>
+	    		<td><h:message for="descricao" style="color:red" /></td>
+	    	</tr>
+	    	
+	    	<tr>
+	    		<td><h:outputLabel value='Preco'/></td>
+	    		<td><h:inputText id='preco' value='#{formAltLivroBean.livro.preco}' class="form-control" /></td>
+	    		<td><h:message for="preco" style="color:red" /></td>
+	    	</tr>	
+	    	<tr>
+	    		<td colspan='3'>
+	    		<h:commandButton value='Alterar' action="#{formAltLivroBean.alterar}"/>
+	    			
+	    		
+	    		</td>
+	    	</tr>
+	   	</table>
+	   	
+	   	<h:outputText value="#{formAltLivroBean.msg}"/>
+	   	
+	   	
+	   	
+	   	
+	   	
+	   	
+	   	 </h:form>
+	    
+	</ui:define>
+	
+</ui:composition>
+</html>
+	   	
+	   	
